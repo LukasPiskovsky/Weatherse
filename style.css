@@ -22,6 +22,7 @@ body{
 /****HEADER****/
 header{
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -69,6 +70,14 @@ header input[type="submit"] {
 header input[type="submit"]:hover{
     background-color: rgb(80, 182, 80);
     transition: 0.3s all ease;
+}
+
+header .flag{
+    position: absolute;
+    right:5px;
+    bottom:5px;
+    width:40px;
+    cursor: pointer;
 }
 
 /****MAIN****/
