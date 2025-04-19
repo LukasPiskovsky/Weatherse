@@ -147,16 +147,16 @@ header input[type="submit"]:hover{
         left:0%;
         top:20px;
         animation: sunlight;
-        animation-duration: 2s;
-        animation-timing-function:ease;
+        animation-duration: 3s;
+        animation-timing-function:ease-in-out;
         animation-fill-mode: forwards;
     }
 
     header, .grid-item{
         box-shadow: 10px 10px 15px #00000070;
         animation: shadow;
-        animation-duration: 2s;
-        animation-timing-function:ease;
+        animation-duration: 3s;
+        animation-timing-function:ease-in-out;
         animation-fill-mode: forwards;
     }
     
@@ -164,11 +164,13 @@ header input[type="submit"]:hover{
         0%{
             left:0%;
             top:20px;
+            transform: rotate(0deg);
         }
         100%{
             left:90%;
             top:20px;
             display: none;
+            transform: rotate(180deg);
         }
     }
 
