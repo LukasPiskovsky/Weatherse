@@ -22,6 +22,7 @@ let weatherApi = async function (cityName) {
         setTimeout( () => {
             resultArray.pop()
             localStorage.setItem("savedCities", JSON.stringify(resultArray))
+            cityInput.value = ""
         }, 200)
         alert("city was not found")
     }
@@ -43,6 +44,23 @@ submitBtn.addEventListener("click", async () => {
     catch(error){
         console.log("Error fetching weather for city: ", city, error)
     }
+})
+
+cityInput.addEventListener("keydown", async (e) => {
+    if(e.key == "Enter"){
+        let city = cityInput.value 
+        cityInput.value = ""
+        try{
+            let weather = await weatherApi(city)
+            resultArray.push(weather)
+            localStorage.setItem("savedCities", JSON.stringify(resultArray))
+            renderCities()
+        }
+        catch(error){
+            console.log("Error fetching weather for city: ", city, error)
+        }
+    }
+
 })
 
 /****RENDER GRID ITEMS****/
@@ -98,7 +116,7 @@ let renderCities = async() =>{
 
 renderCities()
 
-/****SET ANIMATION****/
+/****SET ANIMATION TO APPLY ONCE****/
 window.addEventListener("DOMContentLoaded", () => {
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach(item => item.classList.add('animate-shadow'));
