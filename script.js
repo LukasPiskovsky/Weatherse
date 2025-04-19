@@ -83,7 +83,7 @@ let renderCities = async() =>{
         let wind = document.createElement("p")
         wind.textContent = `Wind speed: ${city.wind.speed} ms`
         let windIcon = document.createElement("img")
-        windIcon.src = (city.wind.speed < 15) ? "img/keyboard_arrow_up.png" : "img/keyboard_double_arrow_up.png"
+        windIcon.src = (city.wind.speed < 5) ? "img/keyboard_arrow_up.png" : "img/keyboard_double_arrow_up.png"
         // windIcon.src = "img/keyboard_arrow_up.png"
         windIcon.style.transform = `rotate(${city.wind.deg}deg)`
         let deleteItem = document.createElement("button")
