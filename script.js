@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /****DOM****/
 const cityInput = document.getElementById("city-input")
 const submitBtn = document.getElementById("submit")
@@ -97,7 +96,6 @@ let renderCities = async() =>{
     })
 }
 
-=======
 /****DOM****/
 const cityInput = document.getElementById("city-input")
 const submitBtn = document.getElementById("submit")
@@ -196,5 +194,4 @@ let renderCities = async() =>{
     })
 }
 
->>>>>>> b8de6b2 (Initial local commit)
 renderCities()
