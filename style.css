@@ -15,6 +15,10 @@ body{
     /* font-family: "Roboto", sans-serif; */
     font-family: "Inter", sans-serif;
 }
+.sun{
+    display: none;
+}
+
 /****HEADER****/
 header{
     display: flex;
@@ -24,10 +28,11 @@ header{
     width:300px;
     margin: 0 auto;
     gap:5px;
-    margin-top: 100px;
+    margin-top: 50px;
     background-color: #00000091;
     padding:20px;
     border-radius: 10px;
+    box-shadow:-3px 3px 10px #00000070;
 }
 
 header h1{
@@ -84,6 +89,7 @@ header input[type="submit"]:hover{
     color:rgb(117, 182, 150);
     margin:0 10px;
     border-radius: 10px;
+    box-shadow:-3px 3px 10px #00000070;
 }
 
 .grid-item button {
@@ -126,4 +132,55 @@ header input[type="submit"]:hover{
     width: 100px;
     padding:5px;
     border-radius: 50%;
+}
+
+/****SUN ANIMATION****/
+@media (min-width: 1300px){
+    header{
+        margin-top: 120px;
+    }
+    
+    .sun{
+        display: inline;
+        width:100px;
+        position: absolute;
+        left:0%;
+        top:20px;
+        animation: sunlight;
+        animation-duration: 2s;
+        animation-timing-function:ease;
+        animation-fill-mode: forwards;
+    }
+
+    header, .grid-item{
+        box-shadow: 10px 10px 15px #00000070;
+        animation: shadow;
+        animation-duration: 2s;
+        animation-timing-function:ease;
+        animation-fill-mode: forwards;
+    }
+    
+    @keyframes sunlight {
+        0%{
+            left:0%;
+            top:20px;
+        }
+        100%{
+            left:90%;
+            top:20px;
+            display: none;
+        }
+    }
+
+    @keyframes shadow{
+        0%{
+            box-shadow: 10px 10px 15px #00000070;
+        }
+        90%{
+            box-shadow: -10px 10px 15px #00000070;
+        }
+        100%{
+            box-shadow:-3px 3px 10px #00000070;
+        }
+    }
 }
