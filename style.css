@@ -1,0 +1,129 @@
+/****GENERAL****/
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+html{
+    min-height: 100vh;
+    height: fit-content;
+    background:linear-gradient(#68c4e0, #000000);
+}
+body{
+    margin: 0 auto;
+    /* font-family: "Montserrat", sans-serif; */
+    /* font-family: "Roboto", sans-serif; */
+    font-family: "Inter", sans-serif;
+}
+/****HEADER****/
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:300px;
+    margin: 0 auto;
+    gap:5px;
+    margin-top: 100px;
+    background-color: #00000091;
+    padding:20px;
+    border-radius: 10px;
+}
+
+header h1{
+    color:#71ca76;
+    letter-spacing: 1px;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+}
+
+header input[type="text"]{
+    padding:5px;
+    border: #333 solid 2px;
+    border-radius: 10px;
+    font-size: 14px;
+    outline:none;
+    background-color: #00000041;
+    color:#fff;
+}
+
+header input[type="text"]::placeholder{
+    color:#ccc;
+}
+
+header input[type="submit"] {
+    width: 100px;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(122, 182, 117);
+    color:#fff;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+header input[type="submit"]:hover{
+    background-color: rgb(80, 182, 80);
+    transition: 0.3s all ease;
+}
+
+/****MAIN****/
+.grid-container{
+    display: grid;
+    max-width: 900px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    column-gap:5px;
+    row-gap: 25px;
+    margin: 25px auto 25px;
+}
+
+.grid-item{
+    display: grid;
+    /* width:250px; */
+    padding:30px;
+    background-color: #333333d0;
+    color:rgb(117, 182, 150);
+    margin:0 10px;
+    border-radius: 10px;
+}
+
+.grid-item button {
+    width: 100px;
+    margin: 30px auto 0px;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(182, 117, 117);
+    color:#fff;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+.grid-item button:hover{
+    background-color: rgb(182, 80, 80);
+    transition: 0.3s all ease;
+}
+
+.grid-item h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: "Poppins", sans-serif;
+}
+
+.weather-box, .wind-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+}
+
+.wind-box{
+    margin-top: 10px;
+}
+
+.weather-box img{
+    background-color: rgb(117, 169, 182);
+    width: 100px;
+    padding:5px;
+    border-radius: 50%;
+}
