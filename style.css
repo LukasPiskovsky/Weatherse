@@ -78,7 +78,15 @@ header .flag{
     bottom:5px;
     width:40px;
     cursor: pointer;
+    filter: brightness(0.7);
+    transition: all 0.3 ease;
 }
+
+header .flag:hover{
+    filter: brightness(0.8);
+    transition: all 0.3 ease;
+}
+
 
 /****MAIN****/
 .grid-container{
