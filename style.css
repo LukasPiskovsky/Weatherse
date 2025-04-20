@@ -203,3 +203,11 @@ header .flag:hover{
         }
     }
 }
+
+/****SMARTHOPNE****/
+
+@media (max-width: 560px){
+    .grid-container{
+        margin: 25px auto 50px;
+    }
+}

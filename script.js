@@ -63,10 +63,33 @@ cityInput.addEventListener("keydown", async (e) => {
 
 })
 
+/****UPDATE VALUES****/
+let updateValuesForAll = async () =>{
+    for(let i = 0; i < resultArray.length; i++){
+        try{
+            let updatedData = await weatherApi(resultArray[i].name)
+            resultArray[i] = { ...resultArray[i], ...updatedData }
+        }
+        catch(error){
+            console.log("error fetching data from update", error)
+        }
+    }
+    localStorage.setItem("savedCities", JSON.stringify(resultArray))
+    renderCities()
+}
+
+updateValuesForAll()
+
+setInterval( async ()=>{
+    updateValuesForAll()
+}, 5000)
+
+
+
 /****RENDER GRID ITEMS****/
 let renderCities = async() =>{
     gridContainer.innerHTML = ""
-    console.log(resultArray)
+    // console.log(resultArray)
     resultArray.forEach(  (city, index) =>{
         let cityContainer = document.createElement("div")
 
