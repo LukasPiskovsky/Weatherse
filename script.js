@@ -24,7 +24,7 @@ let weatherApi = async function (cityName) {
             localStorage.setItem("savedCities", JSON.stringify(resultArray))
             cityInput.value = ""
         }, 200)
-        alert("city was not found")
+        // alert("city was not found")
     }
 }
 
