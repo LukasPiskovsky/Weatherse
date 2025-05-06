@@ -2,23 +2,71 @@
 const cityInput = document.getElementById("city-input")
 const submitBtn = document.getElementById("submit")
 const gridContainer = document.getElementById("grid-container")
+const languageBtn = document.getElementById("language")
+const html = document.querySelector("html")
+
+/****LANGUAGE****/
+let language = JSON.parse(localStorage.getItem("language")) ?? true
+console.log(language)
+languageBtn.addEventListener("click", () =>{
+    language = !language
+    localStorage.setItem("language", language)
+    renderCities()
+    if(language){
+        languageBtn.children[0].src = "img/czech.png"
+        html.lang = "en"
+        cityInput.placeholder = "Enter city"
+        submitBtn.value = "Submit"
+    } else {
+        languageBtn.children[0].src = "img/great-britain.png"
+        html.lang = "cs"
+        cityInput.placeholder = "Napiš název města"
+        submitBtn.value = "Odeslat"
+    }
+
+})
+
+if(language){
+    languageBtn.children[0].src = "img/czech.png"
+    html.lang = "en"
+    cityInput.placeholder = "Enter city"
+    submitBtn.value = "Submit"
+} else {
+    languageBtn.children[0].src = "img/great-britain.png"
+    html.lang = "cs"
+    cityInput.placeholder = "Napiš název města"
+    submitBtn.value = "Odeslat"
+}
 
 /****WEATHER****/
 let apiKey = "fb10fb940f990fd432e361f4596cbb42"
 
 let weatherApi = async function (cityName) {
     try{
-        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`)
+        if(language){
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`)
 
-        if(!response.ok){
-            throw new Error("HTTP error! status: " + response.status);
+            if(!response.ok){
+                throw new Error("HTTP error! status: " + response.status);
+            }
+    
+            const weatherData = await response.json();
+            return weatherData;
+        } else{
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric&lang=cz`)
+
+            if(!response.ok){
+                throw new Error("HTTP error! status: " + response.status);
+            }
+    
+            const weatherData = await response.json();
+            return weatherData;
         }
 
-        const weatherData = await response.json();
-        return weatherData;
     }
     catch(error){
-        console.log("The weather data were not fetched, problem:", error);
+        let message = language ? "The weather data were not fetched, problem:" : "Počasí není dostupné, problém: "
+        console.log(message, error);
         setTimeout( () => {
             resultArray.pop()
             localStorage.setItem("savedCities", JSON.stringify(resultArray))
@@ -42,7 +90,8 @@ submitBtn.addEventListener("click", async () => {
         renderCities()
     }
     catch(error){
-        console.log("Error fetching weather for city: ", city, error)
+        let message = language ? "Error fetching weather for city: " : "Počasí není dostupné, problém: "
+        console.log(message, city, error)
     }
 })
 
@@ -57,7 +106,8 @@ cityInput.addEventListener("keydown", async (e) => {
             renderCities()
         }
         catch(error){
-            console.log("Error fetching weather for city: ", city, error)
+            let message = language ? "Error fetching weather for city: " : "Počasí není dostupné, problém: "
+            console.log(message, city, error)
         }
     }
 
@@ -71,7 +121,8 @@ let updateValuesForAll = async () =>{
             resultArray[i] = { ...resultArray[i], ...updatedData }
         }
         catch(error){
-            console.log("error fetching data from update", error)
+            let message = language ? "error fetching data from update: " : "Chyba při načítání dat, problém: "
+            console.log(message, error)
         }
     }
     localStorage.setItem("savedCities", JSON.stringify(resultArray))
@@ -98,19 +149,19 @@ let renderCities = async() =>{
 
         let weatherBox = document.createElement("div")
         let weather = document.createElement("p")
-        weather.textContent = `Temp: ${Math.round(city.main.temp)} °C`
+        weather.textContent = `${language? "Temp: " : "Teplota: "} ${Math.round(city.main.temp)} °C`
         let weatherIcon = document.createElement("img")
         weatherIcon.src = `https://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`
 
         let windBox = document.createElement("div")
         let wind = document.createElement("p")
-        wind.textContent = `Wind speed: ${city.wind.speed} ms`
+        wind.textContent = `${language? "Wind speed: " : "Rychlost větru: "} ${city.wind.speed} ms`
         let windIcon = document.createElement("img")
         windIcon.src = (city.wind.speed < 5) ? "img/keyboard_arrow_up.png" : "img/keyboard_double_arrow_up.png"
         // windIcon.src = "img/keyboard_arrow_up.png"
         windIcon.style.transform = `rotate(${city.wind.deg}deg)`
         let deleteItem = document.createElement("button")
-        deleteItem.textContent = "Delete"
+        deleteItem.textContent = language ? "Delete" : "Vymazat"
         deleteItem.addEventListener("click", (e) => {
             resultArray.splice(index, 1)
 
