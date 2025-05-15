@@ -4,6 +4,7 @@ const submitBtn = document.getElementById("submit")
 const gridContainer = document.getElementById("grid-container")
 const languageBtn = document.getElementById("language")
 const html = document.querySelector("html")
+const footer = document.querySelector("footer")
 
 /****LANGUAGE****/
 let language = JSON.parse(localStorage.getItem("language")) ?? true
@@ -195,3 +196,25 @@ window.addEventListener("DOMContentLoaded", () => {
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach(item => item.classList.add('animate-shadow'));
   });
+
+
+/***FOOTER DISPLAY*/
+window.addEventListener("scroll", ()=>{
+
+
+    console.log((window.innerHeight + window.pageYOffset) == html.scrollHeight)
+
+    if((window.innerHeight + window.pageYOffset) == html.scrollHeight){
+        footer.style.visibility = "visible"
+    }
+    else{
+        footer.style.visibility = "hidden"
+    }
+})
+
+if((window.innerHeight + window.pageYOffset) == html.scrollHeight){
+    footer.style.visibility = "visible"
+}
+else{
+    footer.style.visibility = "hidden"
+}
